@@ -1,6 +1,6 @@
 # TheWay
 
-## Alunos: João Francisco Torres e Marcus Vinícius Bacelar.
+## Alunos: João Francisco Torres e Marcus Vinícius R. Bacelar.
 
 Sistema de Gestão Comercial desenvolvido para auxiliar na administração de uma **loja de suplementos alimentares**.
 
