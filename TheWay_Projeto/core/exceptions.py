@@ -1,0 +1,2 @@
+class EstoqueInsuficienteException(Exception):
+    pass

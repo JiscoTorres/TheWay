@@ -1,0 +1,65 @@
+1. LIGAR O SERVIDOR
+
+No terminal:
+
+python manage.py runserver
+
+Se der certo:
+
+Starting development server at http://127.0.0.1:8000/
+
+
+
+
+3. TESTAR CRIAR PRODUTO
+
+No Insomnia/Postman:
+
+Método:
+POST
+URL:
+http://127.0.0.1:8000/produtos/
+
+
+
+
+
+
+
+5. TESTAR LISTAR PRODUTOS
+Método:
+GET
+URL:
+http://127.0.0.1:8000/produtos/
+
+
+
+
+
+6. TESTAR CLIENTE
+POST
+
+URL:
+
+http://127.0.0.1:8000/clientes/
+
+
+
+
+7. TESTAR VENDA
+
+Agora a parte mais importante.
+
+POST
+
+URL:
+
+http://127.0.0.1:8000/vendas/
+
+
+
+8. VERIFICAR ESTOQUE
+
+Faz GET:
+
+http://127.0.0.1:8000/produtos/1/
