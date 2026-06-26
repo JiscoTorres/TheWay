@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)file:///C:/Users/marcus.bacelar/Downloads/TheWay-Apresentacao.html -->
+<html lang="pt-br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TheWay – Guia de Apresentação</title>
+<style>
+  :root {
+    --roxo: #b8860b;
+    --rosa: #f5c200;
+    --roxo-claro: #c9960e;
+    --bg: #f7f3f9;
+    --branco: #ffffff;
+    --cinza: #6c757d;
+    --texto: #1a1a2e;
+    --code-bg: #1a1a2e;
+    --code-green: #a8ff78;
+    --code-yellow: #ffd580;
+    --code-blue: #82aaff;
+    --code-pink: #ff5370;
+    --code-comment: #546e7a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--texto); line-height: 1.7; }
+
+  /* ── HERO ─────────────────────────────── */
+  .hero {
+    background: linear-gradient(135deg, var(--roxo) 0%, var(--roxo-claro) 60%, #fffb05 100%);
+    padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(168, 104, 7, 0.18) 0%, transparent 70%);
+  }
+  .hero-emoji { font-size: 3.5rem; display: block; margin-bottom: 0.5rem; }
+  .hero h1 { font-size: clamp(2.2rem, 6vw, 3.5rem); font-weight: 800; color: var(--branco); letter-spacing: -1px; }
+  .hero h1 span { color: var(--rosa); }
+  .hero p { color: rgba(255,255,255,0.75); font-size: 1.05rem; margin-top: 0.5rem; }
+  .hero-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 1.5rem; }
+  .hero-badge {
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+    color: var(--branco); padding: 0.3rem 0.9rem; border-radius: 20px; font-size: 0.8rem;
+  }
+
+  /* ── LAYOUT ───────────────────────────── */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+  section { padding: 3rem 0; }
+  section + section { border-top: 1px solid #e8dded; }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: linear-gradient(135deg, var(--roxo), var(--rosa));
+    color: var(--branco); padding: 0.3rem 1rem; border-radius: 20px;
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;
+  }
+  .section-title { font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 800; color: var(--roxo); margin-bottom: 0.5rem; line-height: 1.2; }
+  .section-desc { color: var(--cinza); font-size: 0.95rem; max-width: 650px; margin-bottom: 2rem; }
+
+  /* ── CODE BLOCK ───────────────────────── */
+  .code-block {
+    background: var(--code-bg); border-radius: 12px;
+    overflow: hidden; margin: 1rem 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  }
+  .code-header {
+    background: rgba(255,255,255,0.06); padding: 0.6rem 1rem;
+    display: flex; align-items: center; gap: 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .code-dots { display: flex; gap: 5px; }
+  .code-dots span {
+    width: 11px; height: 11px; border-radius: 50%;
+  }
+  .d1 { background: #ff5f57; }
+  .d2 { background: #febc2e; }
+  .d3 { background: #28c840; }
+  .code-filename { color: rgba(255,255,255,0.5); font-size: 0.75rem; font-family: monospace; }
+  .code-body { padding: 1.25rem 1.5rem; font-family: 'Cascadia Code', 'Consolas', monospace; font-size: 0.82rem; line-height: 1.8; overflow-x: auto; }
+  .code-body .cm { color: var(--code-comment); font-style: italic; }
+  .code-body .kw { color: var(--code-pink); }
+  .code-body .fn { color: var(--code-blue); }
+  .code-body .st { color: var(--code-green); }
+  .code-body .nm { color: var(--code-yellow); }
+  .code-body .tx { color: #cdd3de; }
+
+  /* ── EXPLAIN BLOCK ────────────────────── */
+  .explain {
+    background: var(--branco); border-radius: 12px;
+    padding: 1.5rem; margin: 1rem 0;
+    box-shadow: 0 2px 10px rgba(61,10,68,0.08);
+    border-left: 4px solid var(--rosa);
+  }
+  .explain h4 { color: var(--roxo); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .explain p { font-size: 0.88rem; color: #444; }
+  .explain ul { margin-top: 0.5rem; padding-left: 1.2rem; }
+  .explain ul li { font-size: 0.86rem; color: #444; margin-bottom: 0.25rem; }
+  .highlight { background: #fce4ec; color: var(--roxo); padding: 0.1rem 0.4rem; border-radius: 4px; font-weight: 600; font-size: 0.83rem; }
+
+  /* ── CODE + EXPLAIN PAIR ──────────────── */
+  .code-section { margin-bottom: 2.5rem; }
+  .code-section h3 {
+    font-size: 1.1rem; font-weight: 700; color: var(--roxo);
+    margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;
+  }
+  .code-section h3::before {
+    content: ''; width: 4px; height: 1.1rem;
+    background: var(--rosa); border-radius: 2px; display: inline-block;
+  }
+
+  /* ── LAYERS ───────────────────────────── */
+  .layers { display: flex; flex-direction: column; }
+  .layer {
+    display: flex; align-items: center; gap: 1.25rem;
+    padding: 1rem 1.5rem; background: var(--branco);
+  }
+  .layer:first-child { border-radius: 14px 14px 0 0; }
+  .layer:last-child { border-radius: 0 0 14px 14px; }
+  .layer + .layer { border-top: 1px dashed #e0d0e6; }
+  .layer-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+  .l1 { background: #fce4ec; } .l2 { background: #f3e5f5; } .l3 { background: #ede7f6; } .l4 { background: #e8eaf6; }
+  .layer-body h4 { font-size: 0.95rem; font-weight: 700; color: var(--roxo); }
+  .layer-body p { font-size: 0.82rem; color: var(--cinza); }
+  .arrow { text-align: center; font-size: 1.2rem; color: var(--rosa); padding: 0.15rem 0; background: var(--bg); }
+
+  /* ── STEPS ────────────────────────────── */
+  .steps { display: flex; flex-direction: column; gap: 1.25rem; }
+  .step {
+    display: grid; grid-template-columns: 56px 1fr; gap: 1.25rem; align-items: start;
+    background: var(--branco); border-radius: 14px; padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(61,10,68,0.08); border-left: 4px solid var(--rosa);
+  }
+  .step-num {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--roxo), var(--rosa));
+    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    color: var(--branco); font-size: 1.3rem; font-weight: 900; flex-shrink: 0;
+  }
+  .step-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--roxo); margin-bottom: 0.35rem; }
+  .step-body p { color: #444; font-size: 0.9rem; }
+  .step-body .cmd {
+    display: block; background: var(--code-bg); color: var(--code-green);
+    padding: 0.6rem 1rem; border-radius: 8px;
+    font-family: 'Cascadia Code', 'Consolas', monospace; font-size: 0.82rem; margin-top: 0.6rem;
+  }
+  code { background: #f0eaf2; color: var(--roxo-claro); padding: 0.15rem 0.5rem; border-radius: 5px; font-size: 0.83rem; }
+
+  /* ── JWT FLOW ─────────────────────────── */
+  .jwt-flow {
+    display: flex; align-items: center; justify-content: center;
+    flex-wrap: wrap; gap: 0.5rem;
+    background: var(--branco); border-radius: 14px; padding: 2rem;
+    box-shadow: 0 2px 12px rgba(61,10,68,0.08);
+  }
+  .jwt-box { background: var(--bg); border: 2px solid #e0d0e6; border-radius: 10px; padding: 0.75rem 1.25rem; text-align: center; font-size: 0.82rem; }
+  .jwt-box strong { display: block; color: var(--roxo); font-size: 0.95rem; }
+  .jwt-arrow { font-size: 1.4rem; color: var(--rosa); }
+
+  footer { background: var(--roxo); color: rgba(255,255,255,0.7); text-align: center; padding: 2rem; font-size: 0.85rem; }
+  footer span { color: var(--rosa); }
+
+  @media (max-width: 600px) {
+    .step { grid-template-columns: 44px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="hero-emoji">🏋️</span>
+  <h1>TheWay</h1>
+  <p>Sistema de Gestão de Suplementos — Entrega 3</p>
+  <div class="hero-badges">
+    <span class="hero-badge">Django 6</span>
+    <span class="hero-badge">API REST</span>
+    <span class="hero-badge">JWT</span>
+    <span class="hero-badge">SQLite</span>
+    <span class="hero-badge">HTML + JS</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ARQUITETURA -->
+  <section>
+    <div class="section-label">🏗 Arquitetura</div>
+    <h2 class="section-title">Como o sistema é organizado?</h2>
+    <p class="section-desc">O projeto usa arquitetura em camadas — cada camada tem uma responsabilidade separada e elas se comunicam de cima para baixo.</p>
+    <div class="layers">
+      <div class="layer">
+        <div class="layer-icon l1">🖥️</div>
+        <div class="layer-body">
+          <h4>Apresentação — <code>templates/frontend.html</code></h4>
+          <p>Interface HTML + JavaScript que o usuário vê no navegador. Faz chamadas fetch() para a API.</p>
+        </div>
+      </div>
+      <div class="arrow">↓</div>
+      <div class="layer">
+        <div class="layer-icon l2">🔌</div>
+        <div class="layer-body">
+          <h4>API REST — <code>views.py</code> + <code>urls.py</code></h4>
+          <p>Recebe as requisições HTTP, verifica o token JWT e chama os serializers.</p>
+        </div>
+      </div>
+      <div class="arrow">↓</div>
+      <div class="layer">
+        <div class="layer-icon l3">⚙️</div>
+        <div class="layer-body">
+          <h4>Regras de Negócio — <code>serializers.py</code></h4>
+          <p>Valida os dados recebidos, aplica as regras (estoque, CPF, totais) e prepara para salvar.</p>
+        </div>
+      </div>
+      <div class="arrow">↓</div>
+      <div class="layer">
+        <div class="layer-icon l4">🗄️</div>
+        <div class="layer-body">
+          <h4>Banco de Dados — <code>models.py</code></h4>
+          <p>Define as tabelas. O Django ORM converte objetos Python em SQL automaticamente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SETTINGS -->
+  <section>
+    <div class="section-label">⚙️ Configuração</div>
+    <h2 class="section-title">settings.py — o coração das configurações</h2>
+    <p class="section-desc">Este arquivo registra tudo que o Django precisa saber sobre o projeto: apps instalados, banco de dados, JWT e permissões padrão da API.</p>
+
+    <div class="code-section">
+      <h3>Apps instalados</h3>
+      <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div><span class="code-filename">config/settings.py</span></div>
+        <div class="code-body"><span class="tx">INSTALLED_APPS = [
+    </span><span class="cm"># Apps nativos do Django</span><span class="tx">
+    </span><span class="st">'django.contrib.admin'</span><span class="tx">,
+    </span><span class="st">'django.contrib.auth'</span><span class="tx">,
+    ...
+
+    </span><span class="cm"># Bibliotecas instaladas via pip</span><span class="tx">
+    </span><span class="st">'rest_framework'</span><span class="tx">,        </span><span class="cm"># Django REST Framework (API REST)</span><span class="tx">
+    </span><span class="st">'rest_framework_simplejwt'</span><span class="tx">, </span><span class="cm"># Autenticação JWT</span><span class="tx">
+    </span><span class="st">'corsheaders'</span><span class="tx">,          </span><span class="cm"># Permite o frontend chamar a API</span><span class="tx">
+
+    </span><span class="cm"># Nossos apps criados no projeto</span><span class="tx">
+    </span><span class="st">'produtos'</span><span class="tx">,
+    </span><span class="st">'clientes'</span><span class="tx">,
+    </span><span class="st">'vendas'</span><span class="tx">,
+    </span><span class="st">'suplementos'</span><span class="tx">,
+]</span></div>
+      </div>
+      <div class="explain">
+        <h4>O que cada biblioteca faz?</h4>
+        <ul>
+          <li><span class="highlight">rest_framework</span> — transforma o Django em uma API REST, com suporte a JSON, ViewSets e Routers</li>
+          <li><span class="highlight">rest_framework_simplejwt</span> — adiciona as rotas de login que geram o token JWT</li>
+          <li><span class="highlight">corsheaders</span> — sem isso, o navegador bloqueia as chamadas do frontend para a API (política de segurança chamada CORS)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="code-section">
+      <h3>Configuração do JWT e permissões</h3>
+      <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div><span class="code-filename">config/settings.py</span></div>
+        <div class="code-body"><span class="tx">REST_FRAMEWORK = {
+    </span><span class="cm"># Define que toda autenticação usa JWT</span><span class="tx">
+    </span><span class="st">'DEFAULT_AUTHENTICATION_CLASSES'</span><span class="tx">: [
+        </span><span class="st">'rest_framework_simplejwt.authentication.JWTAuthentication'</span><span class="tx">,
+    ],
+    </span><span class="cm"># Define que toda rota exige usuário logado</span><span class="tx">
+    </span><span class="st">'DEFAULT_PERMISSION_CLASSES'</span><span class="tx">: [
+        </span><span class="st">'rest_framework.permissions.IsAuthenticated'</span><span class="tx">,
+    ],
+    </span><span class="cm"># Handler customizado para nossos erros (ex: estoque)</span><span class="tx">
+    </span><span class="st">'EXCEPTION_HANDLER'</span><span class="tx">: </span><span class="st">'core.handlers.custom_exception_handler'</span><span class="tx">,
+}
+
+SIMPLE_JWT = {
+    </span><span class="st">'ACCESS_TOKEN_LIFETIME'</span><span class="tx">: timedelta(hours=</span><span class="nm">8</span><span class="tx">),  </span><span class="cm"># token válido por 8h</span><span class="tx">
+    </span><span class="st">'REFRESH_TOKEN_LIFETIME'</span><span class="tx">: timedelta(days=</span><span class="nm">1</span><span class="tx">),   </span><span class="cm"># refresh válido por 1 dia</span><span class="tx">
+}</span></div>
+      </div>
+      <div class="explain">
+        <h4>Por que isso é importante?</h4>
+        <p>As duas configurações juntas fazem com que <strong>qualquer endpoint da API</strong> automaticamente exija um token válido — sem precisar repetir isso em cada view. É uma configuração global.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- URLS -->
+  <section>
+    <div class="section-label">🗺 Rotas</div>
+    <h2 class="section-title">urls.py — mapa de todas as rotas</h2>
+    <p class="section-desc">Este arquivo conecta cada URL a uma view (função ou classe que processa a requisição).</p>
+
+    <div class="code-block">
+      <div class="code-header"><div class="code-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div><span class="code-filename">config/urls.py</span></div>
+      <div class="code-body"><span class="tx">urlpatterns = [
+    </span><span class="cm"># Painel administrativo do Django</span><span class="tx">
+    path(</span><span class="st">'admin/'</span><span class="tx">, admin.site.urls),
+
+    </span><span class="cm"># Rotas de autenticação JWT (fornecidas pela biblioteca)</span><span class="tx">
+    path(</span><span class="st">'api/token/'</span><span class="tx">,         </span><span class="fn">TokenObtainPairView</span><span class="tx">.as_view()),  </span><span class="cm"># login</span><span class="tx">
+    path(</span><span class="st">'api/token/refresh/'</span><span class="tx">, </span><span class="fn">TokenRefreshView</span><span class="tx">.as_view()),     </span><span class="cm"># renovar token</span><span class="tx">
+
+    </span><span class="cm"># Nossas rotas de API REST (geradas automaticamente pelo Router)</span><span class="tx">
+    path(</span><span class="st">'api/'</span><span class="tx">, include(</span><span class="st">'produtos.urls'</span><span class="tx">)),   </span><span class="cm"># /api/produtos/</span><span class="tx">
+    path(</span><span class="st">'api/'</span><span class="tx">, include(</span><span class="st">'clientes.urls'</span><span class="tx">)),   </span><span class="cm"># /api/clientes/</span><span class="tx">
+    path(</span><span class="st">'api/'</span><span class="tx">, include(</span><span class="st">'vendas.urls'</span><span class="tx">)),     </span><span class="cm"># /api/vendas/</span><span class="tx">
+
+    </span><span class="cm"># Interface web (frontend e recomendação)</span><span class="tx">
+    path(</span><span class="st">''</span><span class="tx">, include(</span><span class="st">'suplementos.urls'</span><span class="tx">)),
+]</span></div>
+    </div>
+    <div class="explain">
+      <h4>Como o Router gera as rotas automaticamente?</h4>
+      <p>Quando usamos <span class="highlight">DefaultRouter</span> nos apps, ele cria automaticamente as 5 rotas padrão de um CRUD: listar (GET), criar (POST), detalhar (GET /{id}/), atualizar (PUT /{id}/), excluir (DELETE /{id}/). Não precisamos escrever cada rota na mão.</p>
+    </div>
+  </section>
+
+  <!-- MODELS -->
+  <section>
+    <div class="section-label">🗄 Banco de Dados</div>
+    <h2 class="section-title">models.py — as tabelas do banco</h2>
+    <p class="section-desc">Os models definem a estrutura do banco de dados usando classes Python. O Django converte isso em SQL automaticamente quando rodamos <code>migrate</code>.</p>
+
+    <div class="code-section">
+      <h3>Model de Venda (relacionamentos)</h3>
+      <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div><span class="code-filename">vendas/models.py</span></div>
+        <div class="code-body"><span class="kw">class </span><span class="fn">Venda</span><span class="tx">(models.Model):
+    STATUS = [
+        (</span><span class="st">'ABERTA'</span><span class="tx">, </span><span class="st">'ABERTA'</span><span class="tx">),
+        (</span><span class="st">'CONCLUIDA'</span><span class="tx">, </span><span class="st">'CONCLUIDA'</span><span class="tx">),
+        (</span><span class="st">'CANCELADA'</span><span class="tx">, </span><span class="st">'CANCELADA'</span><span class="tx">),
+    ]
+    data_hora = models.DateTimeField(auto_now_add=</span><span class="nm">True</span><span class="tx">)  </span><span class="cm"># preenchido automaticamente</span><span class="tx">
+    status    = models.CharField(choices=STATUS, default=</span><span class="st">'CONCLUIDA'</span><span class="tx">)
+    total     = models.DecimalField(max_digits=</span><span class="nm">10</span><span class="tx">, decimal_places=</span><span class="nm">2</span><span class="tx">, default=</span><span class="nm">0</span><span class="tx">)
+    cliente   = models.ForeignKey(</span><span class="fn">Cliente</span><span class="tx">, on_delete=models.PROTECT)  </span><span class="cm"># chave estrangeira</span><span class="tx">
+
+</span><span class="kw">class </span><span class="fn">ItemVenda</span><span class="tx">(models.Model):
+    venda          = models.ForeignKey(</span><span class="fn">Venda</span><span class="tx">, on_delete=models.CASCADE, related_name=</span><span class="st">'itens'</span><span class="tx">)
+    produto        = models.ForeignKey(</span><span class="fn">Produto</span><span class="tx">, on_delete=models.PROTECT)
+    quantidade     = models.IntegerField()
+    preco_unitario = models.DecimalField(max_digits=</span><span class="nm">10</span><span class="tx">, decimal_places=</span><span class="nm">2</span><span class="tx">)
+    subtotal       = models.DecimalField(max_digits=</span><span class="nm">10</span><span class="tx">, decimal_places=</span><span class="nm">2</span><span class="tx">)</span></div>
+      </div>
+      <div class="explain">
+        <h4>Pontos importantes deste model</h4>
+        <ul>
+          <li><span class="highlight">ForeignKey</span> — cria um relacionamento entre tabelas. Uma Venda pertence a um Cliente; um ItemVenda pertence a uma Venda e a um Produto</li>
+          <li><span class="highlight">on_delete=PROTECT</span> — impede excluir um cliente que tem vendas registradas</li>
+          <li><span class="highlight">on_delete=CASCADE</span> — se a venda for excluída, os itens dela são excluídos junto</li>
+          <li><span class="highlight">related_name='itens'</span> — permite acessar os itens de uma venda com <code>venda.itens.all()</code></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="code-section">
+      <h3>Model de Recomendação (lógica no save)</h3>
+      <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div><span class="code-filename">suplementos/models.py</span></div>
+        <div class="code-body"><span class="kw">class </span><span class="fn">ConsultaSuplemento</span><span class="tx">(models.Model):
+    nome        = models.CharField(max_length=</span><span class="nm">100</span><span class="tx">)
+    peso        = models.FloatField()
+    altura      = models.FloatField()
+    recomendacao = models.TextField(blank=</span><span class="nm">True</span><span class="tx">)
+
+    </span><span class="kw">def </span><span class="fn">save</span><span class="tx">(self, *args, **kwargs):
+        </span><span class="cm"># Calcula o IMC antes de salvar no banco</span><span class="tx">
+        imc = self.peso / (self.altura ** </span><span class="nm">2</span><span class="tx">)
+
+        </span><span class="kw">if</span><span class="tx"> imc &lt; </span><span class="nm">18.5</span><span class="tx">:
+            self.recomendacao = </span><span class="st">"Foco em Hipercalóricos e Proteínas."</span><span class="tx">
+        </span><span class="kw">elif</span><span class="tx"> </span><span class="nm">18.5</span><span class="tx"> &lt;= imc &lt; </span><span class="nm">25</span><span class="tx">:
+            self.recomendacao = </span><span class="st">"Foco em Creatina e Whey Protein."</span><span class="tx">
+        </span><span class="kw">else</span><span class="tx">:
+            self.recomendacao = </span><span class="st">"Foco em Termogênicos e controle de dieta."</span><span class="tx">
+
+        </span><span class="fn">super</span><span class="tx">().save(*args, **kwargs)  </span><span class="cm"># chama o save original do Django</span></div>
+      </div>
+      <div class="explain">
+        <h4>Por que sobrescrever o save()?</h4>
+        <p>Sobrescrevemos o método <span class="highlight">save()</span> para executar a lógica do IMC automaticamente toda vez que uma consulta é salva — sem precisar lembrar de chamar isso manualmente em outro lugar. O <span class="highlight">super().save()</span> no final garante que o Django ainda execute o comportamento padrão de salvar no banco.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERIALIZERS -->
+  <section>
+    <div class="section-label">🔄 Serializers</div>
+    <h2 class="section-title">serializers.py — validação e conversão de dados</h2>
+    <p class="section-desc">Os serializers são responsáveis por duas coisas: converter dados do banco em JSON (para a resposta) e validar os dados recebidos do frontend (antes de salvar).</p>
+
+    <div class="code-section">
+      <h3>Validação de CPF com dígitos verificadores</h3>
+      <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div><span class="code-filename">clientes/serializers.py</span></div>
+        <div class="code-body"><span class="kw">def </span><span class="fn">validate_cpf</span><span class="tx">(self, value):
+    </span><span class="cm"># Remove tudo que não for número (pontos, traço)</span><span class="tx">
+    cpf = re.sub(</span><span class="st">r'\D'</span><span class="tx">, </span><span class="st">''</span><span class="tx">, value)
+
+    </span><span class="cm"># Verifica se tem 11 dígitos</span><span class="tx">
+    </span><span class="kw">if </span><span class="fn">len</span><span class="tx">(cpf) != </span><span class="nm">11</span><span class="tx">:
+        </span><span class="kw">raise</span><span class="tx"> serializers.</span><span class="fn">ValidationError</span><span class="tx">(</span><span class="st">"CPF deve conter 11 dígitos."</span><span class="tx">)
+
+    </span><span class="cm"># Rejeita CPFs como 111.111.111-11 (todos iguais)</span><span class="tx">
+    </span><span class="kw">if</span><span class="tx"> cpf == cpf[</span><span class="nm">0</span><span class="tx">] * </span><span class="nm">11</span><span class="tx">:
+        </span><span class="kw">raise</span><span class="tx"> serializers.</span><span class="fn">ValidationError</span><span class="tx">(</span><span class="st">"CPF inválido."</span><span class="tx">)
+
+    </span><span class="cm"># Valida os 2 dígitos verificadores (algoritmo da Receita Federal)</span><span class="tx">
+    </span><span class="kw">for</span><span class="tx"> i </span><span class="kw">in </span><span class="fn">range</span><span class="tx">(</span><span class="nm">9</span><span class="tx">, </span><span class="nm">11</span><span class="tx">):
+        soma = </span><span class="fn">sum</span><span class="tx">(</span><span class="fn">int</span><span class="tx">(cpf[j]) * (i + </span><span class="nm">1</span><span class="tx"> - j) </span><span class="kw">for</span><span class="tx"> j </span><span class="kw">in </span><span class="fn">range</span><span class="tx">(i))
+        digito = (soma * </span><span class="nm">10</span><span class="tx"> % </span><span class="nm">11</span><span class="tx">) % </span><span class="nm">10</span><span class="tx">
+        </span><span class="kw">if</span><span class="tx"> digito != </span><span class="fn">int</span><span class="tx">(cpf[i]):
+            </span><span class="kw">raise</span><span class="tx"> serializers.</span><span class="fn">ValidationError</span><span class="tx">(</span><span class="st">"CPF inválido."</span><span class="tx">)
+    </span><span class="kw">return</span><span class="tx"> value</span></div>
+      </div>
+      <div class="explain">
+        <h4>O que são dígitos verificadores?</h4>
+        <p>Os dois últimos dígitos do CPF são calculados matematicamente a partir dos 9 primeiros. Esse algoritmo da Receita Federal garante que um CPF digitado aleatoriamente (como 123.456.789-00) seja rejeitado. Não é só checar se tem 11 números — é uma validação matemática real.</p>
+      </div>
+    </div>
+
+    <div class="code-section">
+      <h3>Lógica de criação de venda com controle de estoque</h3>
+      <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div><span class="code-filename">vendas/serializers.py</span></div>
+        <div class="code-body"><span class="kw">def </span><span class="fn">create</span><span class="tx">(self, validated_data):
+    itens_data = validated_data.pop(</span><span class="st">'itens'</span><span class="tx">)   </span><span class="cm"># separa os itens</span><span class="tx">
+    venda = Venda.objects.</span><span class="fn">create</span><span class="tx">(**validated_data)  </span><span class="cm"># cria a venda</span><span class="tx">
+
+    total = </span><span class="nm">0</span><span class="tx">
+
+    </span><span class="kw">for</span><span class="tx"> item </span><span class="kw">in</span><span class="tx"> itens_data:
+        produto   = Produto.objects.</span><span class="fn">get</span><span class="tx">(id=item[</span><span class="st">'produto'</span><span class="tx">].id)
+        quantidade = item[</span><span class="st">'quantidade'</span><span class="tx">]
+
+        </span><span class="cm"># Verifica se há estoque suficiente</span><span class="tx">
+        </span><span class="kw">if</span><span class="tx"> produto.qtd_estoque &lt; quantidade:
+            venda.</span><span class="fn">delete</span><span class="tx">()                        </span><span class="cm"># desfaz a venda</span><span class="tx">
+            </span><span class="kw">raise </span><span class="fn">EstoqueInsuficienteException</span><span class="tx">(produto.nome)
+
+        subtotal = produto.preco * quantidade
+
+        ItemVenda.objects.</span><span class="fn">create</span><span class="tx">(
+            venda=venda, produto=produto,
+            quantidade=quantidade,
+            preco_unitario=produto.preco,   </span><span class="cm"># captura o preço atual</span><span class="tx">
+            subtotal=subtotal
+        )
+
+        produto.qtd_estoque -= quantidade   </span><span class="cm"># desconta o estoque</span><span class="tx">
+        produto.</span><span class="fn">save</span><span class="tx">()
+        total += subtotal
+
+    venda.total = total
+    venda.</span><span class="fn">save</span><span class="tx">()
+    </span><span class="kw">return</span><span class="tx"> venda</span></div>
+      </div>
+      <div class="explain">
+        <h4>Regras de negócio implementadas aqui</h4>
+        <ul>
+          <li><span class="highlight">Verificação de estoque</span> — se qualquer item não tiver estoque suficiente, a venda inteira é cancelada (<code>venda.delete()</code>)</li>
+          <li><span class="highlight">Captura do preço</span> — o <code>preco_unitario</code> é salvo no momento da venda, então se o preço do produto mudar depois, o histórico fica correto</li>
+          <li><span class="highlight">Desconto automático</span> — o estoque é decrementado produto a produto no mesmo loop</li>
+          <li><span class="highlight">Total calculado</span> — o campo <code>total</code> da venda é sempre calculado pelo servidor, nunca enviado pelo frontend</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- JWT FLUXO -->
+  <section>
+    <div class="section-label">🔐 Segurança</div>
+    <h2 class="section-title">Como o JWT funciona na prática?</h2>
+    <p class="section-desc">JWT (JSON Web Token) é um token criptografado que o servidor emite após o login. Ele prova que o usuário está autenticado sem precisar checar o banco a cada requisição.</p>
+
+    <div class="jwt-flow">
+      <div class="jwt-box"><strong>👤 Frontend</strong>envia usuário + senha</div>
+      <div class="jwt-arrow">→</div>
+      <div class="jwt-box"><strong>🔑 /api/token/</strong>valida e gera token</div>
+      <div class="jwt-arrow">→</div>
+      <div class="jwt-box"><strong>💾 Frontend</strong>salva no localStorage</div>
+      <div class="jwt-arrow">→</div>
+      <div class="jwt-box"><strong>📨 Requisições</strong>enviam Authorization: Bearer &lt;token&gt;</div>
+      <div class="jwt-arrow">→</div>
+      <div class="jwt-box"><strong>🛡️ API</strong>verifica e responde</div>
+    </div>
+
+    <div class="code-section" style="margin-top:1.5rem">
+      <h3>Como o frontend envia o token</h3>
+      <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div><span class="code-filename">frontend.html (JavaScript)</span></div>
+        <div class="code-body"><span class="cm">// Função auxiliar que já injeta o token em toda requisição</span><span class="tx">
+</span><span class="kw">async function </span><span class="fn">api</span><span class="tx">(method, url, body) {
+    </span><span class="kw">const</span><span class="tx"> opts = {
+        method,
+        headers: {
+            </span><span class="st">'Content-Type'</span><span class="tx">: </span><span class="st">'application/json'</span><span class="tx">,
+            </span><span class="st">'Authorization'</span><span class="tx">: </span><span class="st">'Bearer '</span><span class="tx"> + token  </span><span class="cm">// &lt;-- token JWT aqui</span><span class="tx">
+        }
+    };
+    </span><span class="kw">if</span><span class="tx"> (body) opts.body = JSON.</span><span class="fn">stringify</span><span class="tx">(body);
+
+    </span><span class="kw">const</span><span class="tx"> res = </span><span class="kw">await </span><span class="fn">fetch</span><span class="tx">(url, opts);
+
+    </span><span class="cm">// Se o token expirou, faz logout automático</span><span class="tx">
+    </span><span class="kw">if</span><span class="tx"> (res.status === </span><span class="nm">401</span><span class="tx">) { </span><span class="fn">doLogout</span><span class="tx">(); </span><span class="kw">return null</span><span class="tx">; }
+
+    </span><span class="kw">return</span><span class="tx"> res;
+}</span></div>
+      </div>
+      <div class="explain">
+        <h4>Por que centralizar assim?</h4>
+        <p>Em vez de repetir o cabeçalho <span class="highlight">Authorization</span> em cada chamada, criamos uma função <span class="highlight">api()</span> que já faz isso automaticamente. Todas as chamadas do sistema passam por ela — se o token expirar, o logout é automático.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO RODAR -->
+  <section>
+    <div class="section-label">🚀 Execução</div>
+    <h2 class="section-title">Como rodar o projeto</h2>
+    <p class="section-desc">Passo a passo completo para subir o sistema localmente no Windows.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Instalar as dependências</h3>
+          <p>Bibliotecas que não vieram com o Django e foram adicionadas na Entrega 3:</p>
+          <code class="cmd">pip install djangorestframework-simplejwt django-cors-headers</code>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Entrar na pasta correta</h3>
+          <p>O <code>manage.py</code> fica dentro de <code>TheWay_Projeto</code>, não na raiz do ZIP:</p>
+          <code class="cmd">cd "...TheWay-entrega3\TheWay_Projeto"</code>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Aplicar as migrações</h3>
+          <p>Cria todas as tabelas no banco SQLite com base nos models:</p>
+          <code class="cmd">python manage.py migrate</code>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Criar o superusuário</h3>
+          <p>Necessário para fazer login na interface. Sugestão: usuário <code>admin</code>, senha <code>admin123</code>:</p>
+          <code class="cmd">python manage.py createsuperuser</code>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h3>Iniciar o servidor</h3>
+          <p>Sobe o servidor de desenvolvimento na porta 8000:</p>
+          <code class="cmd">python manage.py runserver</code>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h3>Acessar no navegador</h3>
+          <p>Interface web completa (login) e recomendação de suplementos (público):</p>
+          <code class="cmd">http://127.0.0.1:8000/           → Sistema completo
+http://127.0.0.1:8000/recomendacao/ → Recomendação pública</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>TheWay © 2025 — <span>João Francisco Torres</span> &amp; <span>Marcus Vinícius R. Bacelar</span></p>
+  <p style="margin-top:0.4rem;font-size:0.75rem">Desenvolvimento Web · Entrega 3</p>
+</footer>
+
+
+
+</body></html>
