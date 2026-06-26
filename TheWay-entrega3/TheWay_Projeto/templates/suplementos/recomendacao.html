@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TheWay – Recomendação de Suplementos</title>
+<style>
+  :root {
+    --roxo: #3d0a44;
+    --rosa: #e5007d;
+    --roxo-claro: #5c1266;
+    --bg: #f0eaf2;
+    --branco: #ffffff;
+    --cinza: #6c757d;
+    --verde: #28a745;
+    --erro: #dc3545;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: #333; }
+
+  header {
+    background: var(--roxo);
+    padding: 1rem 2rem;
+    display: flex; align-items: center; gap: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  header h1 { color: var(--branco); font-size: 1.6rem; letter-spacing: 1px; }
+  header span { color: var(--rosa); font-size: 0.85rem; }
+  nav { margin-left: auto; }
+  nav a { color: var(--branco); text-decoration: none; margin-left: 1.5rem; font-size: 0.9rem; }
+  nav a:hover { color: var(--rosa); }
+
+  main { max-width: 560px; margin: 3rem auto; padding: 0 1rem; }
+
+  .card {
+    background: var(--branco);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(61,10,68,0.12);
+    overflow: hidden;
+  }
+  .card-header {
+    background: linear-gradient(135deg, var(--roxo), var(--roxo-claro));
+    padding: 1.5rem 2rem;
+    border-bottom: 4px solid var(--rosa);
+  }
+  .card-header h2 { color: var(--branco); font-size: 1.2rem; }
+  .card-header p { color: rgba(255,255,255,0.75); font-size: 0.85rem; margin-top: 0.25rem; }
+  .card-body { padding: 2rem; }
+
+  .form-group { margin-bottom: 1.2rem; }
+  label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--roxo); margin-bottom: 0.4rem; }
+  input {
+    width: 100%; padding: 0.65rem 1rem;
+    border: 2px solid #ddd; border-radius: 8px;
+    font-size: 1rem; transition: border 0.2s;
+  }
+  input:focus { outline: none; border-color: var(--rosa); }
+  input.error { border-color: var(--erro); }
+  .error-msg { color: var(--erro); font-size: 0.78rem; margin-top: 0.3rem; }
+
+  .btn {
+    width: 100%; padding: 0.85rem;
+    background: linear-gradient(135deg, var(--rosa), #c9006c);
+    color: var(--branco); border: none; border-radius: 8px;
+    font-size: 1rem; font-weight: 700; cursor: pointer;
+    letter-spacing: 0.5px; transition: opacity 0.2s;
+    margin-top: 0.5rem;
+  }
+  .btn:hover { opacity: 0.9; }
+
+  .resultado {
+    margin-top: 1.5rem;
+    background: linear-gradient(135deg, var(--roxo), var(--roxo-claro));
+    border-radius: 10px; padding: 1.5rem;
+    color: var(--branco); text-align: center;
+    border-left: 5px solid var(--rosa);
+  }
+  .resultado h3 { font-size: 1rem; opacity: 0.85; margin-bottom: 0.5rem; }
+  .resultado .rec-text { font-size: 1.15rem; font-weight: 700; color: var(--rosa); margin-top: 0.5rem; }
+  .resultado .imc { font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem; }
+
+  .messages { margin-bottom: 1rem; }
+  .messages li {
+    list-style: none; padding: 0.6rem 1rem;
+    border-radius: 6px; font-size: 0.875rem;
+    background: #fff3cd; border-left: 4px solid #ffc107; color: #856404;
+  }
+
+  footer { text-align: center; padding: 2rem; color: var(--cinza); font-size: 0.8rem; }
+  footer span { color: var(--rosa); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🏋️ TheWay</h1>
+  <span>Sistema de Gestão de Suplementos</span>
+  <nav>
+    <a href="/">Sistema</a>
+    <a href="/recomendacao/">Recomendação</a>
+  </nav>
+</header>
+
+<main>
+  <div class="card">
+    <div class="card-header">
+      <h2>Recomendação de Suplementos</h2>
+      <p>Informe seus dados para receber a recomendação ideal</p>
+    </div>
+    <div class="card-body">
+
+      {% if messages %}
+      <ul class="messages">
+        {% for msg in messages %}<li>{{ msg }}</li>{% endfor %}
+      </ul>
+      {% endif %}
+
+      <form method="POST" novalidate>
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label for="{{ form.nome.id_for_label }}">{{ form.nome.label }}</label>
+          {{ form.nome }}
+          {% if form.nome.errors %}
+            {% for e in form.nome.errors %}<div class="error-msg">{{ e }}</div>{% endfor %}
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.peso.id_for_label }}">{{ form.peso.label }}</label>
+          {{ form.peso }}
+          {% if form.peso.errors %}
+            {% for e in form.peso.errors %}<div class="error-msg">{{ e }}</div>{% endfor %}
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.altura.id_for_label }}">{{ form.altura.label }}</label>
+          {{ form.altura }}
+          {% if form.altura.errors %}
+            {% for e in form.altura.errors %}<div class="error-msg">{{ e }}</div>{% endfor %}
+          {% endif %}
+        </div>
+
+        <button type="submit" class="btn">Gerar Recomendação</button>
+      </form>
+
+      {% if resultado %}
+      <div class="resultado">
+        <h3>Olá, {{ resultado.nome }}! Sua recomendação é:</h3>
+        <div class="rec-text">{{ resultado.recomendacao }}</div>
+        <div class="imc">
+          IMC calculado: {{ resultado.peso | floatformat:1 }} kg / {{ resultado.altura | floatformat:2 }} m²
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>TheWay &copy; 2025 — Desenvolvido por <span>João Francisco Torres & Marcus Vinícius R. Bacelar</span></p>
+</footer>
+
+</body>
+</html>
